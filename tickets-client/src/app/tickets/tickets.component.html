@@ -1,0 +1,47 @@
+
+
+<div class="d-flex justify-content-left">
+    <div>
+
+        <table class="table">
+            <thead>
+            <tr>
+            
+                <th scope="col">PhoneNumber</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">City</th>
+                <th scope="col">District</th>
+                <th scope="col">CreationDate</th>
+                <th scope="col">#</th>
+              </tr>
+            </thead>
+            <tbody>
+           
+                
+                    <tr *ngFor="let item of tickets"   [class]="getRowColor(item.creationDate,item.id)">
+                        
+                               
+                                <td> {{item.phoneNumber}}</td>
+                                <td> {{item.governorate}}</td>
+                                <td> {{item.city}}</td>
+                                <td> {{item.district}}</td>
+                                <td> {{item.creationDate}}</td>
+                                <td> <button class="btn-primary" [disabled]="isItemHandled(item.id) || getDiffMinutes(item.creationDate)>60" (click)="HandleNow(item.id)">{{( isItemHandled(item.id) ||(getDiffMinutes(item.creationDate) >60 ) )? 'handled': 'Handle'}}</button></td>
+                        </tr>
+                       
+                 
+                   
+              
+            
+            </tbody>
+         
+            
+       </table>
+       <pagination [boundaryLinks]="true" [totalItems]="100" [itemsPerPage]="5"
+       (pageChanged)="onPageChanged($event)"
+           previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+    </div>
+ 
+   
+</div>

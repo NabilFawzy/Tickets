@@ -1,0 +1,67 @@
+<div class="justify-content-right">
+    <div class="col-10">
+      <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+        <div class="text-center mb-4">
+          <h1 class="mb-3">Create Ticket</h1>
+        </div>
+
+
+        <div>
+          <label>Governorate</label>
+          <select 
+                  class="form-control mb-4"
+                  [(ngModel)]="ticket.governorate"
+                  formControlName="governorate"
+                  >
+
+                  <option *ngFor="let g of Governates" [ngValue]="g.name">{{g.name}}</option>
+          </select>
+          
+       </div>
+
+       <div>
+        <label>City</label>
+        <select 
+                class="form-control mb-4"
+                [(ngModel)]="ticket.city"
+                formControlName="city"
+                >
+
+                <option *ngFor="let g of Cities" [ngValue]="g.name">{{g.name}}</option>
+        </select>
+        
+     </div>
+
+     <div>
+      <label>District</label>
+      <select 
+              class="form-control mb-4"
+              [(ngModel)]="ticket.district"
+              formControlName="district"
+              >
+
+              <option *ngFor="let g of Distinct" [ngValue]="g.name">{{g.name}}</option>
+      </select>
+      
+   </div>
+
+   <div class="text-center mb-6">
+    <input   [(ngModel)]="ticket.phoneNumber"   class="form-control border border-primary"  formControlName="phoneNumber" placeholder='Phone Number' class="mt-2"  maxlength="11" width="300">
+    </div>
+
+        <ul class="text-danger list-unstyled" *ngIf="errors">
+          <li *ngFor="let error of errors">
+            {{error}}
+          </li> 
+        </ul>  
+         <div class="d-grid">
+          <button  class="btn btn-lg btn-primary mt-3" type="submit">Create Ticket</button>
+        </div> 
+      </form>
+    </div>
+
+  </div>
+
+  <div *ngIf="isDone" class="text-success">
+    <h3>Successfully created</h3>
+  </div>
